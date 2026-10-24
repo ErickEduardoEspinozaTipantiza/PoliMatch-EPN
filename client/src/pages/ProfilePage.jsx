@@ -246,6 +246,7 @@ const ProfilePage = ({ onboarding = false }) => {
               to="/"
               onClick={(event) => {
                 if (busy) event.preventDefault();
+                else useAuthStore.getState().finishOnboarding();
               }}
             >
               {photos.length ? "Empezar a descubrir" : "Añadir fotos más tarde"}

@@ -161,7 +161,6 @@
 }
 @keyframes match-copy {
   from {
-    opacity: 0;
     transform: translateY(14px);
   }
 }

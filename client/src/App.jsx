@@ -13,6 +13,7 @@ const ConnectionsPage = lazy(() => import("./pages/ConnectionsPage"));
 function App() {
   const location = useLocation();
   const authUser = useAuthStore((state) => state.authUser);
+  const onboardingPending = useAuthStore((state) => state.onboardingPending);
   const checkAuth = useAuthStore((state) => state.checkAuth);
   const checkingAuth = useAuthStore((state) => state.checkingAuth);
   const authError = useAuthStore((state) => state.authError);
@@ -87,7 +88,7 @@ function App() {
               authUser ? (
                 <Navigate
                   replace
-                  to={location.state?.onboarding ? "/onboarding/photos" : "/"}
+                  to={onboardingPending ? "/onboarding/photos" : "/"}
                 />
               ) : (
                 <AuthPage />

@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Eye, EyeOff, LoaderCircle } from "lucide-react";
 import { useAuthStore } from "../store/useAuthStore";
 import {
@@ -102,7 +101,6 @@ const SignUpForm = () => {
   const [visible, setVisible] = useState(false);
   const [error, setError] = useState("");
   const title = useRef(null);
-  const navigate = useNavigate();
   const signup = useAuthStore((state) => state.signup);
   const loading = useAuthStore((state) => state.loading);
   const update = (event) =>
@@ -130,7 +128,6 @@ const SignUpForm = () => {
       return;
     }
     setError("");
-    navigate("/auth", { replace: true, state: { onboarding: true } });
     if (
       !(await signup({
         ...form,

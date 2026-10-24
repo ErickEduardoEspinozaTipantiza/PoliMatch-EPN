@@ -27,7 +27,11 @@ export const useAuthStore = create((set, get) => {
       const res = await axiosInstance.post("/auth/" + path, data);
       if (request !== authRequest) return false;
       clearPrivateState();
-      set({ authUser: res.data.user, checkingAuth: false });
+      set({
+        authUser: res.data.user,
+        checkingAuth: false,
+        onboardingPending: path === "signup",
+      });
       initializeSocket(res.data.user._id);
       toast.success(
         path === "signup"
@@ -44,6 +48,8 @@ export const useAuthStore = create((set, get) => {
   };
   return {
     authUser: null,
+    onboardingPending: false,
+    finishOnboarding: () => set({ onboardingPending: false }),
     checkingAuth: true,
     loading: false,
     authError: null,
@@ -100,6 +106,7 @@ export const useAuthStore = create((set, get) => {
       clearPrivateState();
       set({
         authUser: null,
+        onboardingPending: false,
         checkingAuth: false,
         loading: false,
         authError: null,

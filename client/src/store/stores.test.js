@@ -260,3 +260,25 @@ describe("match celebration delivery", () => {
     expect(useMatchStore.getState().matchQueue).toEqual([]);
   });
 });
+
+it("publishes the signup destination atomically with the authenticated user", async () => {
+  useAuthStore.getState().clearSession();
+  transport.post.mockResolvedValue({ data: { user: { _id: "new-user" } } });
+  const destinations = [];
+  const unsubscribe = useAuthStore.subscribe((state) => {
+    if (state.authUser?._id === "new-user")
+      destinations.push(state.onboardingPending);
+  });
+  try {
+    expect(await useAuthStore.getState().signup({})).toBe(true);
+    expect(destinations.length).toBeGreaterThan(0);
+    expect(destinations.every(Boolean)).toBe(true);
+    useAuthStore.getState().finishOnboarding();
+    expect(useAuthStore.getState().onboardingPending).toBe(false);
+    useAuthStore.getState().clearSession();
+    expect(await useAuthStore.getState().login({})).toBe(true);
+    expect(useAuthStore.getState().onboardingPending).toBe(false);
+  } finally {
+    unsubscribe();
+  }
+});
