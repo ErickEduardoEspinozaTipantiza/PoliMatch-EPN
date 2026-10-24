@@ -43,7 +43,7 @@ La imagen sirve el frontend compilado en modo producción. Las cookies son Secur
 
 No se incluye MongoDB standalone en Compose: rompería las transacciones existentes. Tampoco hace falta Kubernetes para este proyecto.
 
-**Estado de validación:** La imagen requiere validación mediante `docker build` y una prueba de ejecución con las variables del entorno de destino. El workflow incluye una compilación Docker en GitHub Actions; hasta que ese job pase, la imagen debe considerarse pendiente de verificación. Los tests fullstack existentes verifican la aplicación con Node y MongoDB temporal, no el contenedor.
+**Estado de validación:** la compilación Docker pasó en [GitHub Actions](https://github.com/ErickEduardoEspinozaTipantiza/PoliMatch-EPN/actions/runs/40106652228). Falta ejecutar el contenedor con MongoDB, HTTPS y las variables del entorno de destino. Las pruebas fullstack verifican la aplicación con Node y MongoDB temporal; no sustituyen esa prueba de ejecución del contenedor.
 
 ## Repositorio
 

@@ -1,5 +1,7 @@
 # PoliMatch EPN
 
+[![Quality](https://github.com/ErickEduardoEspinozaTipantiza/PoliMatch-EPN/actions/workflows/quality.yml/badge.svg)](https://github.com/ErickEduardoEspinozaTipantiza/PoliMatch-EPN/actions/workflows/quality.yml)
+
 **Una conexión empieza con un interés mutuo.**
 
 Aplicación full stack del ecosistema MERN para descubrir personas de la comunidad universitaria, conectar por citas, amistad o campus y conversar en tiempo real.
@@ -124,7 +126,7 @@ La suite API crea una réplica MongoDB efímera y cuentas ficticias, sin cargar 
 
 `test:integration` arranca frontend y API aislados con MongoDB temporal: verifica dos cuentas ficticias, match recíproco, mensajes por socket, persistencia y revocación de sesión. No carga las credenciales de `.env` ni usa la base configurada para desarrollo.
 
-El workflow de GitHub Actions está configurado para ejecutar estas comprobaciones; aún no se ha ejecutado en GitHub. Las pruebas automatizadas usan datos ficticios y servicios aislados; la subida a Cloudinary debe verificarse con la configuración del entorno de despliegue.
+[GitHub Actions](https://github.com/ErickEduardoEspinozaTipantiza/PoliMatch-EPN/actions/workflows/quality.yml) ejecuta estas comprobaciones en cada push y pull request. Las pruebas automatizadas usan datos ficticios y servicios aislados; la subida a Cloudinary debe verificarse con la configuración del entorno de despliegue.
 
 ## Datos de demostración locales
 
@@ -145,7 +147,7 @@ El seed conserva los perfiles existentes y crea únicamente los ficticios que fa
 
 ## Docker y demo pública
 
-Docker es opcional: el desarrollo normal sigue funcionando con Node. Se incluye una imagen multietapa que compila React y ejecuta Express como usuario sin privilegios, sin incorporar archivos de entorno. La compilación del contenedor está pendiente de verificación en un entorno con Docker; GitHub Actions incluye el job correspondiente.
+Docker es opcional: el desarrollo normal sigue funcionando con Node. Se incluye una imagen multietapa que compila React y ejecuta Express como usuario sin privilegios, sin incorporar archivos de entorno. La imagen se ha compilado correctamente en GitHub Actions. La prueba del contenedor con servicios externos y configuración de despliegue sigue pendiente.
 
 Para una demo se recomienda un servicio Node/Docker en un solo origen, Atlas y Cloudinary. Consulta [alternativas gratuitas, límites y guía de Docker](docs/despliegue.md). Publicar el repositorio no exige contratar ni desplegar servicios.
 
