@@ -1,0 +1,202 @@
+.match-dialog {
+  border: 0;
+  padding: 0;
+  width: min(460px, calc(100% - 28px));
+  max-height: calc(100dvh - 32px);
+  border-radius: 32px;
+  color: var(--ink);
+  background: #fffaf7;
+  overflow: auto;
+  box-shadow: 0 32px 100px #071e3650;
+}
+.match-dialog::backdrop {
+  background: #091c2dc9;
+  animation: match-backdrop 0.3s ease-out both;
+}
+.match-scene {
+  position: relative;
+  padding: 64px 32px 28px;
+  overflow: hidden;
+  text-align: center;
+  isolation: isolate;
+}
+.match-close {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  border: 0;
+  z-index: 2;
+  background: #ffffff80;
+}
+.match-orbit {
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  top: 74px;
+  width: 350px;
+  height: 350px;
+  margin-left: -175px;
+  border: 1px solid #c72c521c;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 48px #c72c5205,
+    0 0 0 96px #c72c5203;
+}
+.match-eyebrow {
+  max-width: 240px;
+  margin-inline: auto;
+  line-height: 1.6;
+  text-transform: uppercase;
+  color: var(--coral);
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 2px;
+}
+.match-portraits {
+  position: relative;
+  height: 228px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.match-portrait {
+  padding: 6px;
+  border-radius: 27px;
+  background: white;
+  box-shadow: 0 12px 30px #122d391c;
+}
+.match-portrait .avatar {
+  border-radius: 21px;
+  font-size: 40px;
+}
+.match-portrait-own {
+  transform: translateX(10px) rotate(-12deg);
+  animation: match-own 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.match-portrait-peer {
+  transform: translateX(-10px) rotate(12deg);
+  animation: match-peer 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+}
+.match-heart {
+  position: absolute;
+  bottom: 38px;
+  left: 50%;
+  width: 64px;
+  height: 64px;
+  margin-left: -32px;
+  background: var(--coral);
+  color: white;
+  border: 5px solid #fffaf7;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  animation: match-heart 0.6s cubic-bezier(0.16, 1.5, 0.3, 1) 0.35s both;
+}
+.match-sparks {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: var(--coral);
+}
+.match-sparks svg {
+  position: absolute;
+  opacity: 0;
+  animation: match-spark 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+}
+.match-scene h2 {
+  font-size: 64px;
+  letter-spacing: -4px;
+  line-height: 1.06;
+  font-weight: 800;
+  animation: match-copy 0.55s ease-out 0.18s both;
+}
+.match-scene h2 span {
+  color: var(--coral);
+}
+.match-copy {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 14px;
+  margin: 16px 0 26px;
+  animation: match-copy 0.55s ease-out 0.26s both;
+}
+.match-chat {
+  width: 100%;
+  border-radius: 999px;
+  min-height: 52px;
+  animation: match-copy 0.55s ease-out 0.32s both;
+}
+.match-continue {
+  display: block;
+  width: 100%;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  padding: 18px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+}
+@keyframes match-backdrop {
+  from {
+    background: #091c2d00;
+  }
+}
+@keyframes match-own {
+  from {
+    opacity: 0;
+    transform: translate(-100px, 35px) rotate(-28deg) scale(0.8);
+  }
+}
+@keyframes match-peer {
+  from {
+    opacity: 0;
+    transform: translate(100px, 35px) rotate(28deg) scale(0.8);
+  }
+}
+@keyframes match-heart {
+  from {
+    opacity: 0;
+    transform: scale(0.25);
+  }
+}
+@keyframes match-copy {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+@keyframes match-spark {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--spark-x), var(--spark-y))
+      rotate(var(--spark-turn)) scale(0.6);
+  }
+}
+@media (max-width: 370px) {
+  .match-scene {
+    padding: 64px 20px 24px;
+  }
+  .match-portrait .avatar {
+    width: 115px !important;
+    height: 145px !important;
+  }
+  .match-scene h2 {
+    font-size: 54px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .match-scene *,
+  .match-dialog::backdrop {
+    animation: none !important;
+  }
+  .match-sparks {
+    display: none;
+  }
+}

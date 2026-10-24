@@ -1,0 +1,152 @@
+.motion-deck .swipe-card-wrapper {
+  transform-origin: 50% 80%;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
+}
+.motion-deck .is-front {
+  cursor: grab;
+  will-change: transform;
+}
+.motion-deck .is-front:active {
+  cursor: grabbing;
+}
+.motion-deck .is-behind {
+  transform: translateY(calc(var(--depth) * 10px))
+    scale(calc(1 - var(--depth) * 0.045));
+  transition: transform 430ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.motion-deck .is-behind .person-card {
+  filter: brightness(0.88);
+}
+.motion-deck .person-card {
+  height: 100%;
+}
+.swipe-stamp {
+  position: absolute;
+  top: 54px;
+  z-index: 5;
+  padding: 7px 14px;
+  border: 3px solid currentColor;
+  border-radius: 10px;
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  pointer-events: none;
+  background: #071b1e4d;
+}
+.like-stamp {
+  left: 22px;
+  color: #88ffc5;
+  transform: rotate(-12deg);
+  opacity: var(--like-opacity, 0);
+}
+.pass-stamp {
+  right: 22px;
+  color: #ffd5d8;
+  transform: rotate(12deg);
+  opacity: var(--pass-opacity, 0);
+}
+.swipe-action-caption {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: var(--muted, #61736a);
+}
+.swipe-actions .swipe-button {
+  flex-shrink: 0;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
+}
+.swipe-actions .swipe-button:not(:disabled):hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 9px 24px #533d5420;
+}
+.swipe-actions .swipe-button:not(:disabled):active {
+  transform: scale(0.91);
+}
+.person-location {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 8px;
+  font-size: 12px;
+  color: #fff;
+}
+.person-interests {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+.person-interests span {
+  border: 1px solid #ffffff60;
+  border-radius: 999px;
+  padding: 5px 9px;
+  background: #12262c80;
+  font-size: 10px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+.person-photo-progress {
+  position: absolute;
+  inset: 12px 14px auto;
+  display: flex;
+  gap: 4px;
+  z-index: 3;
+}
+.person-photo-progress span {
+  flex: 1;
+  height: 3px;
+  border-radius: 4px;
+  background: #00000050;
+}
+.person-photo-progress .active {
+  background: white;
+}
+.person-gallery-controls {
+  position: absolute;
+  inset: 27px 12px auto;
+  display: flex;
+  justify-content: space-between;
+  z-index: 4;
+}
+.person-gallery-controls button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #ffffff60;
+  border-radius: 50%;
+  background: #101c2e80;
+  color: white;
+  cursor: pointer;
+}
+.person-gallery-controls button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+@media (max-width: 360px) {
+  .swipe-actions {
+    gap: 14px;
+  }
+  .swipe-action-caption {
+    font-size: 10px;
+  }
+  .person-interests {
+    gap: 4px;
+    margin-top: 8px;
+  }
+  .person-interests span {
+    padding: 4px 7px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .motion-deck *,
+  .swipe-actions .swipe-button {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

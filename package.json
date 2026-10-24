@@ -1,0 +1,42 @@
+{
+  "name": "polimatch",
+  "version": "1.0.0",
+  "main": "api/server.js",
+  "scripts": {
+    "dev": "node --watch api/server.js",
+    "build": "npm run build --prefix client",
+    "start": "node api/server.js",
+    "test": "node --test tests/api/*.test.js",
+    "test:client": "npm run test --prefix client",
+    "test:e2e": "playwright test",
+    "lint": "npm run lint --prefix client",
+    "check": "node scripts/check.mjs",
+    "test:integration": "playwright test --config playwright.integration.config.js",
+    "screenshots": "playwright test --config playwright.portfolio.config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "type": "module",
+  "license": "ISC",
+  "description": "Conexiones para la comunidad universitaria",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.5.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.3",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "mongodb-memory-server": "^11.3.0",
+    "socket.io-client": "^4.8.4",
+    "@playwright/test": "^1.64.1",
+    "@axe-core/playwright": "^4.14.0"
+  },
+  "engines": {
+    "node": "^22.12.0 || ^24.0.0 || >=26.0.0"
+  }
+}

@@ -1,0 +1,20 @@
+# Only application/build sources enter the Docker context.
+**
+!Dockerfile
+!package.json
+!package-lock.json
+!api/
+!api/**
+!shared/
+!shared/**
+!client/
+!client/**
+**/node_modules
+**/dist
+**/.env
+**/.env.*
+**/*.local
+**/*.log
+**/.git
+**/coverage
+**/*.test.js

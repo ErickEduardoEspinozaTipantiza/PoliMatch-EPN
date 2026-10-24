@@ -1,0 +1,71 @@
+.connections-page {
+  max-width: 1100px;
+}
+.connections-page-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+.connections-page-heading h1 {
+  font-size: clamp(27px, 4vw, 40px);
+  letter-spacing: -1.4px;
+  line-height: 1.15;
+  margin: 12px 0;
+}
+.connections-page-heading h1 span {
+  color: var(--coral);
+}
+.connections-page-heading .muted {
+  font-size: 14px;
+  line-height: 1.6;
+}
+.connections-page-heading .button {
+  flex-shrink: 0;
+}
+.connections-page .connections-aside {
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: #ffffffb0;
+}
+.connections-page .connections-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  padding-top: 22px;
+}
+.connections-page .connection-row {
+  padding: 20px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+.connections-page .connection-row:hover {
+  background: var(--soft);
+}
+.connections-page .connection-row .avatar {
+  width: 60px !important;
+  height: 60px !important;
+}
+.connections-page .aside-note {
+  display: none;
+}
+@media (max-width: 700px) {
+  .connections-page-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .connections-page .connections-list {
+    grid-template-columns: 1fr;
+  }
+  .connections-page .connections-aside {
+    padding: 18px;
+  }
+  .connections-page .connection-row {
+    padding: 14px;
+  }
+  .connections-page-heading h1 {
+    letter-spacing: -0.8px;
+  }
+}
