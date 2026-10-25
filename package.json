@@ -11,8 +11,7 @@
     "test:e2e": "playwright test",
     "lint": "npm run lint --prefix client",
     "check": "node scripts/check.mjs",
-    "test:integration": "playwright test --config playwright.integration.config.js",
-    "screenshots": "playwright test --config playwright.portfolio.config.js"
+    "test:integration": "playwright test --config playwright.integration.config.js"
   },
   "keywords": [],
   "author": "",

@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import { MongoMemoryReplSet } from "mongodb-memory-server";
 import User from "../../api/models/User.js";
 
-// Never import the old seed entrypoint: it used to connect on import.
+// Import the seed module without opening a database connection.
 const seed = await import("../../api/seeds/demo.js").catch((error) => {
   if (error.code !== "ERR_MODULE_NOT_FOUND") throw error;
   return {};

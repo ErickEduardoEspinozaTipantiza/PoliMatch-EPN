@@ -2,7 +2,7 @@ import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { resolve } from "node:path";
 
-// Use the current Node runtime, including environments without npm on PATH.
+// Run every check with the same Node.js runtime.
 const root = fileURLToPath(new URL("../", import.meta.url));
 const client = resolve(root, "client");
 const checks = [

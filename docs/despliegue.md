@@ -1,23 +1,8 @@
-# Demo de portafolio y Docker
+# Despliegue y Docker
 
-Consulta de planes: 24 de octubre de 2026. Son opciones para una demo; no equivalen a disponibilidad garantizada ni recursos ilimitados. No se ha contratado ni desplegado ningún servicio.
+PoliMatch sirve el frontend compilado, la API y Socket.IO desde un mismo proceso Node. Requiere MongoDB con replica set, Cloudinary para las fotografías y HTTPS en producción.
 
-## Recomendación
-
-Publicar primero código, capturas y pruebas en GitHub. Después, si se desea una demo navegable, usar un servicio Node para Express + React compilado, MongoDB Atlas y Cloudinary. Servir frontend, API y Socket.IO en el mismo origen conserva el diseño de cookies actual y evita cambiar la arquitectura solo para alojarla.
-
-| Servicio                                                                                    | Encaje                                                          | Límites relevantes                                                                                                                                                                                                                                                           |
-| ------------------------------------------------------------------------------------------- | --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Render Free](https://render.com/docs/free)                                                 | Primera opción para un Web Service Node o Docker                | Suspensión tras 15 minutos sin tráfico; 750 horas gratuitas por workspace al mes; límites de transferencia y compilación. Sin método de pago, el exceso de transferencia suspende servicios. Con método de pago pueden existir cargos adicionales: revisar límites de gasto. |
-| [Koyeb Free Instance](https://www.koyeb.com/docs/reference/instances)                       | Alternativa para el servidor                                    | Una instancia gratuita por organización, 512 MB, 0,1 vCPU; escala a cero tras una hora sin tráfico.                                                                                                                                                                          |
-| [MongoDB Atlas Free](https://www.mongodb.com/docs/atlas/reference/free-shared-limitations/) | Base con replica set compatible con los matches transaccionales | Un clúster Free por proyecto; límites de almacenamiento, conexiones y operación.                                                                                                                                                                                             |
-| [Cloudinary Free](https://cloudinary.com/pricing)                                           | Fotos sin depender del disco efímero del servidor               | 25 créditos mensuales compartidos entre recursos; revisar consumo y retención.                                                                                                                                                                                               |
-
-Render/Koyeb son alternativas entre sí; Atlas y Cloudinary cubren servicios distintos. No separar el frontend en otro proveedor es una decisión de simplicidad para este proyecto, no una exigencia de MERN. Una demo que despierta lentamente debe indicarlo junto al enlace del README.
-
-## Render sin Docker
-
-Crear un Web Service conectado al repositorio y seleccionar explícitamente el plan Free. Configuración orientativa:
+## Servicio Node
 
 - Build: `npm ci && npm ci --prefix client && npm run build`
 - Start: `npm start`
@@ -41,9 +26,9 @@ Crear `.env.docker.local` localmente a partir de los nombres de `.env.example`, 
 
 La imagen sirve el frontend compilado en modo producción. Las cookies son Secure: usar HTTPS para el despliegue; para probar autenticación sobre HTTP local, usar el flujo de desarrollo documentado en el README. No cambiar a `NODE_ENV=development` en este contenedor para resolverlo, porque Express dejaría de servir `client/dist`.
 
-No se incluye MongoDB standalone en Compose: rompería las transacciones existentes. Tampoco hace falta Kubernetes para este proyecto.
+MongoDB debe ejecutarse como replica set para soportar las transacciones del matching.
 
-**Estado de validación:** la compilación Docker pasó en [GitHub Actions](https://github.com/ErickEduardoEspinozaTipantiza/PoliMatch-EPN/actions/runs/40106652228). Falta ejecutar el contenedor con MongoDB, HTTPS y las variables del entorno de destino. Las pruebas fullstack verifican la aplicación con Node y MongoDB temporal; no sustituyen esa prueba de ejecución del contenedor.
+**Estado de validación:** la compilación Docker pasó en [GitHub Actions](https://github.com/ErickEduardoEspinozaTipantiza/PoliMatch-EPN/actions/runs/40107160409). Falta ejecutar el contenedor con MongoDB, HTTPS y las variables del entorno de destino. Las pruebas fullstack verifican la aplicación con Node y MongoDB temporal; no sustituyen esa prueba de ejecución del contenedor.
 
 ## Repositorio
 

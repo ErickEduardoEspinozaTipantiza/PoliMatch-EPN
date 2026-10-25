@@ -8,9 +8,9 @@ Aplicación full stack del ecosistema MERN para descubrir personas de la comunid
 
 **React · Express · MongoDB · Socket.IO · Zustand · Playwright**
 
-[Funcionalidades](#funcionalidades) · [Arquitectura](#arquitectura) · [Ejecutar localmente](#preparación-local) · [Pruebas](#comprobaciones) · [Despliegue y Docker](docs/despliegue.md)
+[Funcionalidades](#funcionalidades) · [Arquitectura](#arquitectura) · [Ejecutar localmente](#preparación-local) · [Pruebas](#pruebas) · [Despliegue y Docker](docs/despliegue.md)
 
-> Proyecto de portafolio en evolución. Demo pública pendiente. Las capturas muestran la aplicación real con datos ficticios y retratos ilustrados, sin cuentas ni conversaciones personales.
+> Las capturas utilizan perfiles y conversaciones de demostración.
 
 ![Descubrimiento de perfiles en escritorio](docs/screenshots/discover-desktop.png)
 
@@ -35,8 +35,6 @@ Aplicación full stack del ecosistema MERN para descubrir personas de la comunid
   <img src="docs/screenshots/discover-mobile.png" alt="Descubrir en móvil" width="300" />
   <img src="docs/screenshots/match-mobile.png" alt="Celebración de un match" width="300" />
 </p>
-
-[Cómo regenerar las capturas](docs/screenshots/README.md).
 
 </details>
 
@@ -110,7 +108,7 @@ npm run dev --prefix client -- --host localhost --port 5173 --strictPort
 
 Abre [PoliMatch local](http://localhost:5173). El cliente usa `/api` y `/socket.io` del mismo origen; Vite los envía a `http://localhost:5000`. Para cambiar ese destino, usa `client/.env.local` con `API_PROXY_TARGET`. El origen del navegador debe coincidir exactamente con `CLIENT_URL` (localhost y 127.0.0.1 son distintos).
 
-## Comprobaciones
+## Pruebas
 
 ```sh
 npm run check
@@ -144,7 +142,6 @@ El seed conserva los perfiles existentes y crea únicamente los ficticios que fa
 - Errores API JSON consistentes, sin hashes ni credenciales en respuestas.
 - `GET /api/health` indica disponibilidad de la base; no muestra secretos.
 
-
 ## Docker y demo pública
 
 Docker es opcional: el desarrollo normal sigue funcionando con Node. Se incluye una imagen multietapa que compila React y ejecuta Express como usuario sin privilegios, sin incorporar archivos de entorno. La imagen se ha compilado correctamente en GitHub Actions. La prueba del contenedor con servicios externos y configuración de despliegue sigue pendiente.
@@ -161,12 +158,11 @@ Antes de publicar:
 2. Preparar y verificar índices de User (email único), Message (consulta de conversación) y Session (usuario y expiración TTL). En producción `autoIndex` está desactivado para no cambiar índices automáticamente. Ejecutar su creación con un procedimiento autorizado y respaldo.
 3. Verificar que el índice único de correo esté creado antes de abrir el registro.
 4. Configurar `TRUST_PROXY` solo si hay proxies conocidos y verificar que no existe un camino directo que permita eludirlos. El limitador de autenticación es local al proceso; varias instancias requieren almacenamiento compartido.
-5. Realizar prueba de aceptación con cuentas de prueba autorizadas y subida real de foto. No se ha efectuado un despliegue ni una migración remota.
+5. Realizar prueba de aceptación con cuentas de prueba autorizadas y subida real de foto.
 
 ## Documentación
 
 - [Despliegue y Docker](docs/despliegue.md).
-- [Capturas reproducibles](docs/screenshots/README.md).
 
 ## Autor
 
